@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Cliente</title>
+<!-- PARA: -->
+<link rel="stylesheet" th:href="@{/css/login/registrar.css}">
+</head>
+<body>
+	<div class="container">
+		<h1>Cadastro de Cliente</h1>
+
+		<form action="#" th:action="@{/cliente/salvar}" th:object="${cliente}"
+			method="post">
+			<!-- ID (oculto, gerado automaticamente) -->
+			<input type="hidden" th:field="*{idCliente}" />
+
+			<div class="form-group">
+				<label for="nome">Nome:</label> <input type="text" id="nome"
+					th:field="*{nome}" placeholder="Digite seu nome completo" required />
+			</div>
+
+			<div class="form-group">
+				<label for="genero">Gênero:</label> 
+				<select id="genero" th:field="*{genero}" required>
+					<option value="">Selecione...</option>
+					<option value="MASCULINO">Masculino</option>
+					<option value="FEMININO">Feminino</option>
+					<option value="OUTRO">Outro</option>
+					<option value="PREFIRO_NAO_DIZER">Prefiro não dizer</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="dataNascimento">Data de Nascimento:</label> <input
+					type="date" id="dataNascimento" th:field="*{dataNascimento}"
+					required />
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="email" id="email"
+					th:field="*{email}" placeholder="Digite seu email" required />
+			</div>
+
+			<div class="form-group">
+				<label for="confirmaEmail">Confirmar Email:</label> <input
+					type="email" id="confirmaEmail" th:field="*{confirmaEmail}"
+					placeholder="Confirme seu email" required />
+			</div>
+
+			<div class="form-group">
+				<label for="senha">Senha:</label> 
+				
+				<input type="password" id="senha"
+					th:field="*{senha}" placeholder="Digite sua senha" required />
+			</div>
+
+			<button type="submit">Cadastrar</button>
+		</form>
+
+		<div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
+		<div th:if="${mensagemErro}" class="mensagem-erro"
+			th:text="${mensagemErro}"></div>
+
+		<div th:if="${cliente.nome}" class="dados-cliente">
+			<h3>Dados do Cliente Cadastrado:</h3>
+			<p>
+				<strong>ID:</strong> <span th:text="${cliente.idCliente}"></span>
+			</p>
+			<p>
+				<strong>Nome:</strong> <span th:text="${cliente.nome}"></span>
+			</p>
+			<p>
+				<strong>Gênero:</strong> <span th:text="${cliente.genero}"></span>
+			</p>
+			<p>
+				<strong>Data de Nascimento:</strong> <span
+					th:text="${cliente.dataNascimento}"></span>
+			</p>
+			<p>
+				<strong>Email:</strong> <span th:text="${cliente.email}"></span>
+			</p>
+			<p>
+				<strong>Email Confirmado:</strong> <span
+					th:text="${cliente.confirmaEmail}"></span>
+			</p>
+		</div>
+
+		    <div class="link-cadastro">
+            <p>Já possui cadastro? <a th:href="@{/cliente/login}">Faça login</a></p>
+        </div>
+	</div>
+</body>
+</html>

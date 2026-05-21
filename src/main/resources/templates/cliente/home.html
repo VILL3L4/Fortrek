@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Cliente</title>
+<link rel="stylesheet" th:href="@{/css/login/registrar.css}">
+<style>
+    .welcome-container {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .user-info {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+    
+    .logout-btn {
+        background: #dc3545;
+        margin-top: 20px;
+        width: auto;
+        padding: 10px 30px;
+        display: inline-block;
+    }
+    
+    .logout-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-container">
+            <h1>Bem-vindo à Home!</h1>
+            
+            <div class="user-info" th:if="${cliente != null}">
+                <h2>Olá, <span th:text="${cliente.nome}"></span>!</h2>
+                <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+                <p><strong>ID do Cliente:</strong> <span th:text="${cliente.idCliente}"></span></p>
+            </div>
+            
+            <div th:if="${cliente == null}">
+                <p>Você não está logado. <a th:href="@{/cliente/login}">Faça login</a></p>
+            </div>
+            
+            <a th:href="@{/cliente/logout}" class="logout-btn" 
+               style="display: inline-block; text-decoration: none; color: white;">
+                Sair
+            </a>
+        </div>
+    </div>
+</body>
+</html>
